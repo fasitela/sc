@@ -4,7 +4,7 @@
 <section id="room-preview" class="w-screen h-screen relative">
   <div class="flex flex-col justify-start items-center text-center h-full">
     <h1 class="text-5xl p-0 m-0">Расположение мебели в вашей комнате</h1>
-    <img src="2_5d_view.jpeg" class="w-1/2 mt-10" />
+    <img src="2_5d_view.jpeg" class="w-1/2 mt-10" id="preview" />
   </div>
   <div
     id="fake-button"
@@ -19,4 +19,8 @@
   document.querySelector("#fake-button")?.addEventListener("click", () => {
     gotoNext();
   });
+
+  if (window.location.href.endsWith("v2")) {
+    document.querySelector("#preview").src = "2_5d_2.png";
+  }
 </script>

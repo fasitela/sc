@@ -44,7 +44,13 @@ const styles: Style[] = [
     const cards = document.querySelectorAll(".card");
     cards.forEach((card, ind) => {
       card.addEventListener("click", (_) => {
-        saveActiveStyle(slugs[ind]);
+        let slug = "";
+        if (window.location.href.endsWith("v2")) {
+          slug = `${slugs[ind]}_2`;
+        } else {
+          slug = slugs[ind];
+        }
+        saveActiveStyle(slug);
         showNextButton(null);
       });
     });
