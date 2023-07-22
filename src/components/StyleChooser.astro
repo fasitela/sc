@@ -1,0 +1,52 @@
+---
+type Style = {
+  name: string;
+  image: string;
+};
+
+const styles: Style[] = [
+  { name: "Миинимализм", image: "миним.jpg" },
+  {
+    name: "Лофт",
+    image: "loft.jpeg",
+  },
+  {
+    name: "Скандинвский",
+    image: "прованс.jpg",
+  },
+];
+---
+
+<section id="style-chooser" class="h-screen w-screen">
+  <div class="flex flex-col justify-start items-center text-center h-full">
+    <h1 class="text-5xl p-0 m-0">Выберите стиль команты</h1>
+    <div class="flex flex-row w-full justify-around mt-20">
+      {
+        styles.map((style) => (
+          <div class="card flex flex-col justify-center items-center">
+            <h4 class="text-xl font-bold">{style.name}</h4>
+            <img
+              src={style.image}
+              class="h-full w- p-16 transition ease-in-out duration-700 transform hover:scale-110"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <script>
+    import { showNextButton } from "../utils/nextButton";
+    import { saveActiveStyle } from "../utils/activeStyle";
+
+    const slugs = ["minimalism", "loft", "scand"];
+
+    const cards = document.querySelectorAll(".card");
+    cards.forEach((card, ind) => {
+      card.addEventListener("click", (_) => {
+        saveActiveStyle(slugs[ind]);
+        showNextButton(null);
+      });
+    });
+  </script>
+</section>

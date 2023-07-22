@@ -1,0 +1,88 @@
+---
+const icons = ["wall_ic.png", "window_ic.png", "door_ic.png"];
+---
+
+<section id="builder" class="relative w-screen h-screen">
+  <div class="flex flex-col justify-start items-center text-center h-full">
+    <h1 id="editor-title" class="text-5xl p-0 m-0">Перетащите стены в зону редактора</h1>
+    <div class="flex flex-row justify-center items-center w-screen mt-20">
+      <div class="flex flex-col justify-evenly items-center">
+		{icons.map(icon => (
+			<div class="builder-icon w-20 h-20 rounded-lg bg-green-400 p-3 m-3">
+			  <img
+				src={icon}
+				class="invert"
+				draggable="false"
+				(dragstart)="false;"
+			  />
+			</div>
+		))}
+      </div>
+      <div id="editor" class="w-1/2 h-96 border-black border-2 rounded ml-10 flex justify-center">
+			<img id="batman" src="" alt="" class="w-1/2 hidden">
+	  </div>
+    </div>
+  </div>
+	<script>
+		import {showNextButton} from "../utils/nextButton"
+
+		let currentInd = 0
+		let dragging = false
+		const iconsList = ["wall_ic.png", "window_ic.png", "door_ic.png"];
+
+		const image = document.createElement("img") 
+		image.classList = "absolute w-20 top-0 left-0 p-3"
+		image.src ="wall_ic.png"
+
+		const icons = document.querySelectorAll(".builder-icon")
+		const section = document.querySelector("#builder")
+		const editor = document.querySelector("#editor")
+		const batman = document.querySelector("#batman")
+		const title = document.querySelector("#editor-title")
+
+		icons.forEach((icon, ind) => {
+			icon.addEventListener("mousedown", e => onMouseDown(e, ind))
+		})
+		section.addEventListener("mousemove", onMouseMove)
+		section.addEventListener("mouseup", onMouseUp)
+
+		function onMouseDown(e, ind) {
+			dragging = true
+			currentInd = ind
+			image.src = iconsList[ind]
+			section.appendChild(image)
+		}
+
+		function onMouseMove(e) {
+			image.style = `left: calc(${e.clientX}px - 2.5rem); top: calc(${e.clientY}px - 2.5rem);`
+		}
+
+		function onMouseUp(e) {
+			if (!dragging) return
+			const x = e.clientX
+			const y = e.clientY
+
+			const xInside = x >= editor.offsetLeft && x <= editor.offsetLeft + editor.offsetWidth
+			const yInside = y >= editor.offsetTop && y <= editor.offsetTop + editor.offsetHeight
+			if (xInside && yInside) {
+				changeImage()
+			}
+			section.removeChild(image)
+		}
+
+		function changeImage() {
+			if (currentInd == 0) {
+				batman.classList = "w-1/2"
+				batman.src = "walls.jpeg"
+				title.innerHTML = "Теперь перетащите окна"
+			} else if (currentInd == 1) {
+				batman.src = "window.jpeg"
+				title.innerHTML = "Завершите построение дверью!"
+			} else if (currentInd == 2) {
+				batman.src = "door.jpeg"
+				title.innerHTML = "Отлично! Теперь выберите стиль для вашей комнаты"
+				showNextButton(null)
+			}
+		}
+	</script>
+</section>

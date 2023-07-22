@@ -1,0 +1,29 @@
+---
+---
+
+<style>
+  #fake-button {
+    top: 90%;
+    height: 10%;
+  }
+</style>
+
+<section id="room-preview" class="w-screen h-screen relative">
+  <div class="flex flex-col justify-start items-center text-center h-full">
+    <h1 class="text-5xl p-0 m-0">Расположение мебели в вашей комнате</h1>
+    <img src="2_5d_view.jpeg" class="w-1/2 mt-10" />
+  </div>
+  <div
+    id="fake-button"
+    class="w-screen bg-green-700 absolute text-center text-xl font-bold text-white flex items-center justify-center"
+  >
+    Посмотреть варианты с мебелью из магазинов
+  </div>
+</section>
+
+<script>
+  import { gotoNext } from "../utils/currentPage";
+  document.querySelector("#fake-button")?.addEventListener("click", () => {
+    gotoNext();
+  });
+</script>

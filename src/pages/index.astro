@@ -1,15 +1,75 @@
 ---
+import RoomBuilder from "../components/RoomBuilder.astro";
+import RoomPreview from "../components/RoomPreview.astro";
+import StyleChooser from "../components/StyleChooser.astro";
+import FunutureChooser from "../components/FunutureChooser.astro";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Lunasima:wght@400;700&display=swap");
+      html,
+      body {
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        height: 100%;
+        user-drag: none;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        overflow: hidden;
+      }
+
+      section {
+        height: 100vh;
+        width: 100vw;
+      }
+
+      .next {
+        top: 90%;
+        height: 10%;
+      }
+    </style>
+    <title>Astro</title>
+  </head>
+  <body>
+    <div class="flex flex-col">
+      <RoomBuilder />
+      <StyleChooser />
+      <RoomPreview />
+      <FunutureChooser />
+      <div
+        id="next-button"
+        class="next w-screen bg-green-700 fixed hidden text-center text-xl font-bold text-white flex items-center justify-center"
+      >
+        Далее
+      </div>
+    </div>
+    <script>
+      import { hideNextButton } from "../utils/nextButton";
+	  import { gotoNext } from "../utils/currentPage"
+
+      const nextButton = document.querySelector("#next-button");
+      nextButton.addEventListener("click", () => {
+	  	gotoNext()
+        hideNextButton();
+      });
+    </script>
+  </body>
 </html>
