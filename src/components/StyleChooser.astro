@@ -45,7 +45,7 @@ const styles: Style[] = [
     cards.forEach((card, ind) => {
       card.addEventListener("click", (_) => {
         let slug = "";
-        if (window.location.href.endsWith("v3")) {
+        if (window.location.href.includes("v3")) {
           slug = `${slugs[ind]}_2`;
         } else {
           slug = slugs[ind];
