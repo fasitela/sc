@@ -15,38 +15,13 @@ import FunutureChooser from "../components/FunutureChooser.astro";
     />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <link
-      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
       rel="stylesheet"
     />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Lunasima:wght@400;700&display=swap");
-      html,
-      body {
-        margin: 0px;
-        padding: 0px;
-        width: 100%;
-        height: 100%;
-        user-drag: none;
-        user-select: none;
-        -moz-user-select: none;
-        -webkit-user-drag: none;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-        overflow: hidden;
-      }
-
-      section {
-        height: 100vh;
-        width: 100vw;
-      }
-
-      .next {
-        top: 90%;
-        height: 10%;
-      }
-    </style>
-    <title>Astro</title>
+    <link href="main.css"
+      rel="stylesheet"
+    />
+    <title>Fasitela</title>
   </head>
   <body>
     <div class="flex flex-col">
@@ -63,11 +38,11 @@ import FunutureChooser from "../components/FunutureChooser.astro";
     </div>
     <script>
       import { hideNextButton } from "../utils/nextButton";
-	  import { gotoNext } from "../utils/currentPage"
+      import { gotoNext } from "../utils/currentPage";
 
       const nextButton = document.querySelector("#next-button");
       nextButton.addEventListener("click", () => {
-	  	gotoNext()
+        gotoNext();
         hideNextButton();
       });
     </script>
