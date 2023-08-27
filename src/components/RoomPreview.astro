@@ -1,25 +1,31 @@
 ---
-import get from "../utils/text";
 ---
 
 <section id="room-preview" class="w-screen h-screen relative">
   <div class="flex flex-col justify-start items-center text-center h-full">
-    <h1 class="text-5xl p-0 m-0">{get("preview")}</h1>
+    <h1 id="title-1" class="text-5xl p-0 m-0"></h1>
     <img src="2_5d_view.jpeg" class="w-1/2 mt-10" id="preview" />
   </div>
   <div
     id="fake-button"
     class="next w-screen bg-green-700 absolute text-center text-xl font-bold text-white flex items-center justify-center"
   >
-    {get("look_at_furnitured")}
   </div>
 </section>
 
 <script>
   import { gotoNext } from "../utils/currentPage";
-  document.querySelector("#fake-button")?.addEventListener("click", () => {
+  import { translate } from "../utils/text"
+
+  const btn = document.querySelector("#fake-button")!
+  btn?.addEventListener("click", () => {
     gotoNext();
   });
+
+  btn.innerHTML = translate("look_at_furnitured")
+
+  const title = document.querySelector("#title-1")!
+  title.innerHTML = translate("preview")
 
   if (window.location.href.includes("v3")) {
     document.querySelector("#preview").src = "2_5d_2.png";

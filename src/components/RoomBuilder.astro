@@ -1,12 +1,10 @@
 ---
-import get from "../utils/text"
-
 const icons = ["wall_ic.png", "window_ic.png", "door_ic.png"];
 ---
 
 <section id="builder" class="relative w-screen h-screen">
   <div class="flex flex-col justify-start items-center text-center h-full">
-    <h1 id="editor-title" class="text-5xl p-0 m-0">{get("move_walls")}</h1>
+    <h1 id="editor-title" class="text-5xl p-0 m-0"></h1>
     <div class="flex flex-row justify-center items-center w-screen mt-20">
       <div class="flex flex-col justify-evenly items-center">
 		{icons.map(icon => (
@@ -27,7 +25,7 @@ const icons = ["wall_ic.png", "window_ic.png", "door_ic.png"];
   </div>
 	<script>
 		import {showNextButton} from "../utils/nextButton"
-		import get from "../utils/text"
+		import { translate } from "../utils/text"
 
 		let currentInd = 0
 		let dragging = false
@@ -42,6 +40,8 @@ const icons = ["wall_ic.png", "window_ic.png", "door_ic.png"];
 		const editor = document.querySelector("#editor")
 		const batman = document.querySelector("#batman")
 		const title = document.querySelector("#editor-title")
+
+		title.innerHTML = translate("move_walls")
 
 		icons.forEach((icon, ind) => {
 			icon.addEventListener("mousedown", e => onMouseDown(e, ind))
@@ -77,13 +77,13 @@ const icons = ["wall_ic.png", "window_ic.png", "door_ic.png"];
 			if (currentInd == 0) {
 				batman.classList = "w-1/2"
 				batman.src = "walls.jpeg"
-				title.innerHTML = get("move_windows")
+				title.innerHTML = translate("move_windows")
 			} else if (currentInd == 1) {
 				batman.src = "window.jpeg"
-				title.innerHTML = get("move_door")
+				title.innerHTML = translate("move_door")
 			} else if (currentInd == 2) {
 				batman.src = "door.jpeg"
-				title.innerHTML = get("build_done")
+				title.innerHTML = translate("build_done")
 				showNextButton(null)
 			}
 		}

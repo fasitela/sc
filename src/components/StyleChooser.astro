@@ -1,19 +1,17 @@
 ---
-import get from "../utils/text"
-
 type Style = {
   name: string;
   image: string;
 };
 
 const styles: Style[] = [
-  { name: get("minimalism"), image: "миним.jpg" },
+  { name: "", image: "миним.jpg" },
   {
-    name: get("loft"),
+    name: "",
     image: "loft.jpeg",
   },
   {
-    name: get("scand"),
+    name: "",
     image: "прованс.jpg",
   },
 ];
@@ -21,7 +19,7 @@ const styles: Style[] = [
 
 <section id="style-chooser" class="h-screen w-screen">
   <div class="flex flex-col justify-start items-center text-center h-full">
-    <h1 class="text-5xl p-0 m-0">{get("choose_style")}</h1>
+    <h1 id="title" class="text-5xl p-0 m-0"></h1>
     <div class="flex flex-row w-full justify-around mt-20">
       {
         styles.map((style) => (
@@ -40,11 +38,16 @@ const styles: Style[] = [
   <script>
     import { showNextButton } from "../utils/nextButton";
     import { saveActiveStyle } from "../utils/activeStyle";
+    import { translate } from "../utils/text";
+
+	const title = document.querySelector("#title") as HTMLHeadingElement
+	title.innerHTML = translate("choose_style")
 
     const slugs = ["minimalism", "loft", "scand"];
 
     const cards = document.querySelectorAll(".card");
     cards.forEach((card, ind) => {
+      card.querySelector("h4")!.innerHTML = translate(slugs[ind]);
       card.addEventListener("click", (_) => {
         let slug = "";
         if (window.location.href.includes("v3")) {

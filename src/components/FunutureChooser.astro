@@ -1,9 +1,7 @@
 ---
-import get from "../utils/text";
-
 const funuture = ["bed_1.jpg", "bed_2.jpg", "bed_3.jpg"];
 
-const choices = [get("wall_color"), get("floor"), get("bed"), get("chair")];
+const choices = ["", "", "", ""];
 ---
 
 <section id="funuture" class="w-screen h-screen relative">
@@ -14,7 +12,7 @@ const choices = [get("wall_color"), get("floor"), get("bed"), get("chair")];
     >
       arrow_back</span
     >
-    <h1 class="text-5xl p-0 m-0 mt-3">{get("choose_furniture")}</h1>
+    <h1 id="title-2" class="text-5xl p-0 m-0 mt-3"></h1>
     <div class="flex flex-row justify-center items-start mt-20">
       <div class="flex flex-col justify-center items-center mr-10">
         {
@@ -45,6 +43,10 @@ const choices = [get("wall_color"), get("floor"), get("bed"), get("chair")];
     import { readActiveStyle } from "../utils/activeStyle";
     import { goto } from "../utils/currentPage";
     import onVisible from "../utils/visibility";
+	import { translate } from "../utils/text"
+
+	const title = document.querySelector("#title-2") as HTMLHeadingElement
+	title.innerHTML = translate("choose_furniture")
 
     const choicePrefix = ["цветстен", "пол", "кровать", "кресло"];
     const buttons: HTMLImageElement[] = document.querySelectorAll(".btn");
@@ -57,8 +59,10 @@ const choices = [get("wall_color"), get("floor"), get("bed"), get("chair")];
       btn.addEventListener("click", () => select(ind));
     });
 
+    const slugs = [translate("wall_color"), translate("floor"), translate("bed"), translate("chair")];
     const choices = document.querySelectorAll(".choice");
     choices.forEach((choice, ind) => {
+      choice.innerHTML = slugs[ind];
       choice.addEventListener("click", () => switchActive(ind));
     });
 

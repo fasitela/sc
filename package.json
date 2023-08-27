@@ -10,7 +10,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.9.0",
-    "i18n-js": "^4.3.0"
+    "astro": "^2.9.0"
   }
 }
