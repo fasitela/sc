@@ -1,7 +1,9 @@
 ---
+import get from "../utils/text";
+
 const funuture = ["bed_1.jpg", "bed_2.jpg", "bed_3.jpg"];
 
-const choices = ["Цвет стен", "Пол", "Кровать", "Кресло"];
+const choices = [get("wall_color"), get("floor"), get("bed"), get("chair")];
 ---
 
 <section id="funuture" class="w-screen h-screen relative">
@@ -12,7 +14,7 @@ const choices = ["Цвет стен", "Пол", "Кровать", "Кресло"
     >
       arrow_back</span
     >
-    <h1 class="text-5xl p-0 m-0 mt-3">Выберите оформление</h1>
+    <h1 class="text-5xl p-0 m-0 mt-3">{get("choose_furniture")}</h1>
     <div class="flex flex-row justify-center items-start mt-20">
       <div class="flex flex-col justify-center items-center mr-10">
         {

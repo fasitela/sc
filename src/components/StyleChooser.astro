@@ -1,17 +1,19 @@
 ---
+import get from "../utils/text"
+
 type Style = {
   name: string;
   image: string;
 };
 
 const styles: Style[] = [
-  { name: "Минимализм", image: "миним.jpg" },
+  { name: get("minimalism"), image: "миним.jpg" },
   {
-    name: "Лофт",
+    name: get("loft"),
     image: "loft.jpeg",
   },
   {
-    name: "Скандинавский",
+    name: get("scand"),
     image: "прованс.jpg",
   },
 ];
@@ -19,7 +21,7 @@ const styles: Style[] = [
 
 <section id="style-chooser" class="h-screen w-screen">
   <div class="flex flex-col justify-start items-center text-center h-full">
-    <h1 class="text-5xl p-0 m-0">Выберите стиль комнаты</h1>
+    <h1 class="text-5xl p-0 m-0">{get("choose_style")}</h1>
     <div class="flex flex-row w-full justify-around mt-20">
       {
         styles.map((style) => (

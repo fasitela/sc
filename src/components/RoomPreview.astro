@@ -1,16 +1,17 @@
 ---
+import get from "../utils/text";
 ---
 
 <section id="room-preview" class="w-screen h-screen relative">
   <div class="flex flex-col justify-start items-center text-center h-full">
-    <h1 class="text-5xl p-0 m-0">Расположение мебели в вашей комнате</h1>
+    <h1 class="text-5xl p-0 m-0">{get("preview")}</h1>
     <img src="2_5d_view.jpeg" class="w-1/2 mt-10" id="preview" />
   </div>
   <div
     id="fake-button"
     class="next w-screen bg-green-700 absolute text-center text-xl font-bold text-white flex items-center justify-center"
   >
-    Посмотреть варианты с мебелью из магазинов
+    {get("look_at_furnitured")}
   </div>
 </section>
 
@@ -20,7 +21,7 @@
     gotoNext();
   });
 
-  if (window.location.href.includes("v3") ) {
+  if (window.location.href.includes("v3")) {
     document.querySelector("#preview").src = "2_5d_2.png";
   }
 </script>

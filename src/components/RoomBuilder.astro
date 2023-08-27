@@ -1,10 +1,12 @@
 ---
+import get from "../utils/text"
+
 const icons = ["wall_ic.png", "window_ic.png", "door_ic.png"];
 ---
 
 <section id="builder" class="relative w-screen h-screen">
   <div class="flex flex-col justify-start items-center text-center h-full">
-    <h1 id="editor-title" class="text-5xl p-0 m-0">Перетащите стены в зону редактора</h1>
+    <h1 id="editor-title" class="text-5xl p-0 m-0">{get("move_walls")}</h1>
     <div class="flex flex-row justify-center items-center w-screen mt-20">
       <div class="flex flex-col justify-evenly items-center">
 		{icons.map(icon => (
@@ -25,6 +27,7 @@ const icons = ["wall_ic.png", "window_ic.png", "door_ic.png"];
   </div>
 	<script>
 		import {showNextButton} from "../utils/nextButton"
+		import get from "../utils/text"
 
 		let currentInd = 0
 		let dragging = false
@@ -74,13 +77,13 @@ const icons = ["wall_ic.png", "window_ic.png", "door_ic.png"];
 			if (currentInd == 0) {
 				batman.classList = "w-1/2"
 				batman.src = "walls.jpeg"
-				title.innerHTML = "Теперь перетащите окна"
+				title.innerHTML = get("move_windows")
 			} else if (currentInd == 1) {
 				batman.src = "window.jpeg"
-				title.innerHTML = "Завершите построение дверью!"
+				title.innerHTML = get("move_door")
 			} else if (currentInd == 2) {
 				batman.src = "door.jpeg"
-				title.innerHTML = "Отлично! Теперь выберите стиль для вашей комнаты"
+				title.innerHTML = get("build_done")
 				showNextButton(null)
 			}
 		}

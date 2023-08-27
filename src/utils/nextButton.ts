@@ -1,3 +1,5 @@
+import get from "./text"
+
 export function showNextButton(text: string | null) {
 	const button = document.querySelector("#next-button")
 	if (button == null) {
@@ -7,7 +9,7 @@ export function showNextButton(text: string | null) {
 	if (text != null) {
 		button.innerHTML = text
 	} else {
-		button.innerHTML = "Далее"
+		button.innerHTML = get("next")
 	}
 	const timing = {
 		duration: 200,
