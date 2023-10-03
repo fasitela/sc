@@ -1,23 +1,23 @@
 let store = {
-	ru: {
-		move_walls: "Перетащите стены в зону редактора",
-		move_windows: "Теперь перетащите окна",
-		move_door: "Завершите построение дверью!",
-		build_done: "Отлично! Теперь выберите стиль для вашей комнаты",
+	en: {
+		move_walls: "Перетащите стены в редактор",
+		move_windows: "Поеретащите окна",
+		move_door: "Завершите построение дверью",
+		build_done: "Выберите стиль для вашей комнаты",
 
 		minimalism: "Минимализм",
 		loft: "Лофт",
 		scand: "Скандинавский",
-		choose_style: "Выберите стиль комнаты",
+		choose_style: "Выберите стиль",
 
-		preview: "Расположение мебели в вашей комнате",
-		look_at_furnitured: "Посмотреть варианты с мебелью из магазинов",
+		preview: "Расположение мебели в комнате",
+		look_at_furnitured: "Посмотреть варианты с мебелью",
 
 		wall_color: "Цвет стен",
 		floor: "Пол",
 		bed: "Кровать",
 		chair: "Кресло",
-		choose_furniture: "Выберите оформление",
+		cf: "Выберите оформление",
 
 		next: "Далее"
 	}
@@ -46,6 +46,6 @@ let store = {
 }
 
 export function translate(key) {
-	return store.ru[key]
+	return store.en[key]
 }
 
