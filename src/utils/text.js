@@ -20,7 +20,11 @@ let store = {
 		cf: "Выберите оформление",
 
 		next: "Далее",
-		begin: "Начать"
+		begin: "Начать",
+
+		walls: "Стены",
+		windows: "Окна",
+		doors: "Двери"
 	},
 	en: {
 		move_walls: "Drag walls into editor area",
@@ -43,7 +47,11 @@ let store = {
 		choose_furniture: "Choose a design",
 
 		next: "Next",
-		begin: "Get started"
+		begin: "Get started",
+
+		walls: "Walls",
+		windows: "Windows",
+		doors: "Doors"
 	}
 }
 
