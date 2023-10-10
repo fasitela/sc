@@ -1,24 +1,40 @@
 ---
-const icons = ["wall_ic.png", "window_ic.png", "door_ic.png"];
+const icons = [
+{
+	name: "Walls",
+	image:  "wall_ic.png", 
+},
+{
+	name: "Windows",
+	image: "window_ic.png", 
+},
+{
+	name: "Doors",
+	image: "door_ic.png"
+},
+];
 ---
 
 <section id="builder" class="relative w-screen h-screen">
   <div class="flex flex-col justify-start items-center text-center h-full">
-    <h1 id="editor-title" class="text-5xl p-0 m-0"></h1>
-    <div class="flex flex-row justify-center items-center w-screen mt-20">
-      <div class="flex flex-col justify-evenly items-center">
+    <h1 id="editor-title" class="text-5xl p-0 m-0 mt-14"></h1>
+    <div class="container flex flex-row justify-center items-center w-screen mt-20">
+      <div class="buttons flex flex-col justify-evenly items-center">
 		{icons.map(icon => (
-			<div class="builder-icon w-20 h-20 rounded-lg bg-green-400 p-3 m-3">
-			  <img
-				src={icon}
-				class="invert"
-				draggable="false"
-				(dragstart)="false;"
-			  />
+			<div class="builder-icon w-60 h-24 rounded-lg m-3">
+				<div class="icon-title absolute flex justify-center items-center w-60 h-24 text-xl text-white">
+				{icon.name}
+				</div>
+				  <img
+					src={icon.image}
+					class="w-20 m-3"
+					draggable="false"
+					(dragstart)="false;"
+				  />
 			</div>
 		))}
       </div>
-      <div id="editor" class="w-1/2 h-96 border-black border-2 rounded ml-10 flex justify-center">
+      <div id="editor" class="w-1/2 h-96 border-black rounded ml-10 flex justify-center">
 			<img id="batman" src="" alt="" class="w-1/2 hidden">
 	  </div>
     </div>
@@ -26,7 +42,8 @@ const icons = ["wall_ic.png", "window_ic.png", "door_ic.png"];
 	<script>
 		import {showNextButton} from "../utils/nextButton"
 		import { translate } from "../utils/text"
-
+		import isMobile from "../utils/isMobile"
+ 
 		let currentInd = 0
 		let dragging = false
 		const iconsList = ["wall_ic.png", "window_ic.png", "door_ic.png"];
@@ -40,14 +57,27 @@ const icons = ["wall_ic.png", "window_ic.png", "door_ic.png"];
 		const editor = document.querySelector("#editor")
 		const batman = document.querySelector("#batman")
 		const title = document.querySelector("#editor-title")
+		 
+		const isMob = isMobile()
 
 		title.innerHTML = translate("move_walls")
 
 		icons.forEach((icon, ind) => {
-			icon.addEventListener("mousedown", e => onMouseDown(e, ind))
+			if (isMob) {
+				icon.addEventListener("click", e => {
+						currentInd = ind
+						changeImage()
+					}
+				)
+			} else {
+				icon.addEventListener("mousedown", e => onMouseDown(e, ind))
+			}
 		})
-		section.addEventListener("mousemove", onMouseMove)
-		section.addEventListener("mouseup", onMouseUp)
+		
+		if (!isMob) {
+			section.addEventListener("mousemove", onMouseMove)
+			section.addEventListener("mouseup", onMouseUp)
+		}
 
 		function onMouseDown(e, ind) {
 			dragging = true
@@ -78,14 +108,65 @@ const icons = ["wall_ic.png", "window_ic.png", "door_ic.png"];
 				batman.classList = "w-1/2"
 				batman.src = "walls.jpeg"
 				title.innerHTML = translate("move_windows")
+				icons[0].style["background-color"] = "rgba(110, 118, 81, 0.6)"
 			} else if (currentInd == 1) {
 				batman.src = "window.jpeg"
 				title.innerHTML = translate("move_door")
+				icons[1].style["background-color"] = "rgba(110, 118, 81, 0.6)"
 			} else if (currentInd == 2) {
 				batman.src = "door.jpeg"
 				title.innerHTML = translate("build_done")
+				icons[2].style["background-color"] = "rgba(110, 118, 81, 0.6)"
 				showNextButton(null)
 			}
 		}
 	</script>
 </section>
+
+
+<style>
+	.builder-icon {
+		background-color: var(--dark-green);
+	}
+
+	#editor {
+		background-color: rgba(203, 196, 142, 0.3);
+background-blend-mode: multiply;
+	}
+
+	img {
+		mix-blend-mode: multiply;
+	}
+
+	#editor-title {
+		color: var(--darker-green);
+	}
+	
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+	#editor-title {
+		display: none;
+	}
+
+	.buttons {
+		flex-direction: row;
+		width: 100vw;
+	}
+
+	.container {
+		flex-direction: column;
+		height: 60vh;
+		margin-top: calc(50px + 102px) 
+	}
+
+	#editor {
+		width: 90vw;
+		margin: 0px;
+		height: 30vh;
+	}
+
+	.icon-title {
+		display: none;
+	}
+  }
+</style>

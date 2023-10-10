@@ -8,13 +8,13 @@ const choices = ["", "", "", ""];
   <div class="flex flex-col justify-start items-center text-center h-full">
     <span
       id="back-button"
-      class="material-symbols-outlined absolute left-10 top-3 rounded-full bg-green-400 p-3"
+      class="material-symbols-outlined absolute left-10 rounded-full bg-green-400 p-3"
     >
       arrow_back</span
     >
     <h1 id="title-2" class="text-5xl p-0 m-0 mt-3"></h1>
-    <div class="flex flex-row justify-center items-start mt-20">
-      <div class="flex flex-col justify-center items-center mr-10">
+    <div class="container flex flex-row justify-center items-start mt-20">
+      <div class="choices flex flex-col justify-center items-center mr-10">
         {
           choices.map((choice) => (
             <p class="choice w-40 m-2 p-2 bg-green-400 rounded-full text-white">
@@ -29,7 +29,7 @@ const choices = ["", "", "", ""];
         alt=""
         class="w-1/2"
       />
-      <div class="flex flex-col justify-start items-start">
+      <div class="choices-2 flex flex-col justify-start items-start">
         {
           funuture.map((image) => (
             <img class="btn w-40 mb-5 ml-5" src={image} alt="" />
@@ -43,10 +43,10 @@ const choices = ["", "", "", ""];
     import { readActiveStyle } from "../utils/activeStyle";
     import { goto } from "../utils/currentPage";
     import onVisible from "../utils/visibility";
-	import { translate } from "../utils/text"
+    import { translate } from "../utils/text";
 
-	const title = document.querySelector("#title-2") as HTMLHeadingElement
-	title.innerHTML = translate("cf")
+    const title = document.querySelector("#title-2") as HTMLHeadingElement;
+    title.innerHTML = translate("cf");
 
     const choicePrefix = ["цветстен", "пол", "кровать", "кресло"];
     const buttons: HTMLImageElement[] = document.querySelectorAll(".btn");
@@ -59,7 +59,12 @@ const choices = ["", "", "", ""];
       btn.addEventListener("click", () => select(ind));
     });
 
-    const slugs = [translate("wall_color"), translate("floor"), translate("bed"), translate("chair")];
+    const slugs = [
+      translate("wall_color"),
+      translate("floor"),
+      translate("bed"),
+      translate("chair"),
+    ];
     const choices = document.querySelectorAll(".choice");
     choices.forEach((choice, ind) => {
       choice.innerHTML = slugs[ind];
@@ -93,3 +98,60 @@ const choices = ["", "", "", ""];
     });
   </script>
 </section>
+
+<style>
+  .choice {
+    background-color: var(--dark-green);
+  }
+
+  #back-button {
+    background-color: var(--dark-green);
+    top: 90%;
+  }
+
+  @media only screen and (max-width: 768px) {
+    #title-2 {
+      display: none;
+    }
+
+    #back-button {
+      display: none;
+    }
+
+    .container {
+      flex-direction: column;
+	  align-items: center;
+    }
+
+    .choices {
+      flex-direction: row;
+      overflow-x: scroll;
+	  width: 100vw;
+      margin-top: calc(52px + 10vh);
+	  justify-content: start;
+    }
+
+    .choice {
+      flex-shrink: 0;
+	  margin-left: 7vw;
+    }
+
+	#room {
+		width: 90vw;
+		height: 30vh;
+	}
+
+	.choices-2 {
+		flex-direction: row;
+		overflow-x: scroll;
+		width: 100vw;
+		justify-content: start;
+		margin-top: 2vh;
+	}
+
+	.btn {
+		width: 30vw;
+		flex-shrink: 0;
+	}
+  }
+</style>

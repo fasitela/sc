@@ -18,16 +18,18 @@ const styles: Style[] = [
 ---
 
 <section id="style-chooser" class="h-screen w-screen">
-  <div class="flex flex-col justify-start items-center text-center h-full">
-    <h1 id="title" class="text-5xl p-0 m-0"></h1>
-    <div class="flex flex-row w-full justify-around mt-20">
+  <div
+    class="outer flex flex-col justify-start items-center text-center h-full"
+  >
+    <h1 id="title" class="text-5xl p-0 m-0 mt-14"></h1>
+    <div class="container flex flex-row justify-around mt-20">
       {
         styles.map((style) => (
           <div class="card flex flex-col justify-center items-center">
-            <h4 class="text-xl font-bold">{style.name}</h4>
+            <h4 class="card-text text-xl font-bold style-name">{style.name}</h4>
             <img
               src={style.image}
-              class="h-full w- p-16 transition ease-in-out duration-700 transform hover:scale-110"
+              class="image h-full p-16 transition ease-in-out duration-700 transform hover:scale-110"
             />
           </div>
         ))
@@ -40,8 +42,8 @@ const styles: Style[] = [
     import { saveActiveStyle } from "../utils/activeStyle";
     import { translate } from "../utils/text";
 
-	const title = document.querySelector("#title") as HTMLHeadingElement
-	title.innerHTML = translate("choose_style")
+    const title = document.querySelector("#title") as HTMLHeadingElement;
+    title.innerHTML = translate("choose_style");
 
     const slugs = ["minimalism", "loft", "scand"];
 
@@ -61,3 +63,45 @@ const styles: Style[] = [
     });
   </script>
 </section>
+
+<style>
+  #title {
+    color: var(--darker-green);
+  }
+
+  .style-name {
+    color: var(--darker-green);
+  }
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    #title {
+      display: none;
+    }
+
+    #style-chooser {
+      overflow: hidden;
+    }
+
+	.outer {
+      margin-top: calc(52px + 102px + 1vh);
+	}
+
+    .container {
+      width: 100vw;
+      overflow-x: scroll;
+	  justify-content: start;
+    }
+
+    .image {
+      width: 50vw;
+      padding: 0px;
+    }
+
+    .card {
+      flex-shrink: 0;
+      width: 50vw;
+      position: relative;
+	  margin-left: 50px;
+    }
+  }
+</style>

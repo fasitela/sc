@@ -1,0 +1,41 @@
+---
+---
+
+<section id="welcome" class="h-screen w-screen flex row">
+  <div class="flex flex-col h-full w-full">
+    <div class="flex flex-row justify-center items-center h-screen">
+      <img src="/img/welcome_blueprint.png" id="blueprint" />
+      <img src="/img/iphone.png" alt="" id="iphone" />
+    </div>
+  </div>
+
+  <script>
+    import { showNextButton } from "../utils/nextButton.ts";
+    import { translate } from "../utils/text.js";
+
+    showNextButton(translate("begin"));
+  </script>
+</section>
+
+<style>
+  #blueprint {
+    width: 30vw;
+  }
+
+  #iphone {
+    width: 20vw;
+    margin-left: -120px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    #blueprint {
+      width: 70vw;
+    }
+
+    #iphone {
+      width: 35vw;
+      margin-left: -120px;
+    }
+  }
+</style>

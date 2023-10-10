@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+:root {
+	--next-btn-width: 200px;
+	--next-btn-height: 50px;
+	--dark-green:#6E7651;
+	--darker-green: rgba(65, 63, 16, 1);
+}
+
 html,
 body {
   margin: 0px;
@@ -11,9 +20,15 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   overflow: hidden;
+  background: rgba(203, 196, 142, 0.1);
+font-family: 'Bebas Neue', sans-serif;
 }
 
 .next {
-	top: 90%;
-	height: 10%;
+	top: calc(100% - var(--next-btn-height) - 7vh);
+	height: var(--next-btn-height);
+	background-color: var(--dark-green);
+	border-radius: 15px;
+	width: var(--next-btn-width);
+	left: calc((100vw - var(--next-btn-width)) / 2)
 }

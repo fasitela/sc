@@ -3,6 +3,8 @@ import RoomBuilder from "../components/RoomBuilder.astro";
 import RoomPreview from "../components/RoomPreview.astro";
 import StyleChooser from "../components/StyleChooser.astro";
 import FunutureChooser from "../components/FunutureChooser.astro";
+import Welcome from "../components/Welcome.astro";
+import FasitelaIcon from "../components/FasitelaIcon.astro";
 ---
 
 <html lang="en">
@@ -24,13 +26,17 @@ import FunutureChooser from "../components/FunutureChooser.astro";
   </head>
   <body>
     <div class="flex flex-col">
+      <div class="logo">
+        <FasitelaIcon />
+      </div>
+      <Welcome />
       <RoomBuilder />
       <StyleChooser />
       <RoomPreview />
       <FunutureChooser />
       <div
         id="next-button"
-        class="next w-screen bg-green-700 fixed hidden text-center text-xl font-bold text-white flex items-center justify-center"
+        class="next fixed hidden text-center text-l font-bold text-white flex items-center justify-center"
       >
         Далее
       </div>
@@ -47,3 +53,18 @@ import FunutureChooser from "../components/FunutureChooser.astro";
     </script>
   </body>
 </html>
+
+<style>
+  .logo {
+    margin-left: 100px;
+    margin-top: 50px;
+    position: fixed;
+  }
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .logo {
+      margin-left: 5vw;
+      margin-top: 5vh;
+    }
+  }
+</style>
