@@ -2,7 +2,9 @@
 ---
 
 <section id="room-preview" class="w-screen h-screen relative">
-  <div class="container flex flex-col justify-start items-center text-center h-full">
+  <div
+    class="container flex flex-col justify-start items-center text-center h-full"
+  >
     <h1 id="title-1" class="text-5xl p-0 m-0 mt-14"></h1>
     <img src="2_5d_view.jpeg" class="w-1/2 mt-10" id="preview" />
   </div>
@@ -44,17 +46,21 @@
 
   @media only screen and (max-width: 768px) {
     /* For mobile phones: */
-	#title-1 {
-		display: none;
-	}
+    #title-1 {
+      display: none;
+    }
 
-	#preview {
-		width: 90vw;
-		margin: 0px;
-	}
+    #preview {
+      width: 90vw;
+      margin: 0px;
+    }
 
-	.container {
-		justify-content: center;
-	}
+    .container {
+      justify-content: center;
+    }
+
+    #fake-button {
+      top: calc(100% - var(--next-btn-height) - 12vh);
+    }
   }
 </style>
